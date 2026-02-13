@@ -1,0 +1,24 @@
+Appenders:
+  Console: #输出到控制台
+    name: CONSOLE #Appender命名
+    target: SYSTEM_OUT
+    PatternLayout:
+      pattern: "%style{%d{yyyy-MM-dd HH:mm:ss,SSS}}{bright,magenta} %highlight{[%p]}{FATAL=white, ERROR=bright_red, WARN=bright_yellow, INFO=bright_green, DEBUG=bright_cyan, TRACE=bright_blue} [%style{%t}{bright,yellow}/%style{%c{1}}{bright,cyan}] -> %style{%m}{#EEDFCC}%n" #输出日志的格式
+      disableAnsi: false
+  RollingFile:
+    - name: FILE
+      fileName: 'log/current.log'
+      filePattern: "log/%d{yyyy/MM/dd/HH}.log"
+      PatternLayout:
+        pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS} %p %t/%c/%C.%M(%F:%L) --> %m%n" #输出日志的格式
+      Policies:
+        TimeBasedTriggeringPolicy:
+          interval: 1
+          modulate: true
+Loggers:
+  Root:
+    level: INFO
+    additivity: true
+    AppenderRef:
+      - ref: CONSOLE
+      - ref: FILE
