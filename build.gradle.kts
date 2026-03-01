@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.mingliqiye.logger"
-version = "1.0.6"
+version = "1.0.7"
 
 dependencies {
     api("org.slf4j:slf4j-api:2.0.17")

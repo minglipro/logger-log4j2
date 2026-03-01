@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout disableAnsi="false">
+                <pattern>
+                    %style{%d{yyyy-MM-dd HH:mm:ss,SSS}}{bright,magenta} %highlight{[%p]}{FATAL=white, ERROR=bright_red, WARN=bright_yellow, INFO=bright_green, DEBUG=bright_cyan, TRACE=bright_blue} [%style{%t}{bright,yellow}/%style{%c{1}}{bright,cyan}] -> %style{%m}{#EEDFCC}%n
+                </pattern>
+            </PatternLayout>
+        </Console>
+        <RollingFile name="FILE"
+                     fileName="log/current.log"
+                     filePattern="log/%d{yyyy/MM/dd/HH}.log">
+            <PatternLayout>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} %p %t/%c/%C.%M(%F:%L) --> %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO" additivity="true">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="FILE"/>
+        </Root>
+    </Loggers>
+</Configuration>
